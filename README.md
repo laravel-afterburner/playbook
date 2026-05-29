@@ -82,6 +82,7 @@ Supported front matter keys:
 | `slug` | URL slug (defaults to filename) |
 | `order` | Sort order within group |
 | `group` | Sidebar group label (defaults to folder name) |
+| `group_order` | Sort order for sidebar groups (defaults to `0` for `getting-started/` folders, otherwise `100`) |
 | `feature` | Hide unless `App\Support\Features` flag is enabled |
 | `system_admin` | Restrict to system administrators (`true` by default for pages under a `system-admin/` folder) |
 

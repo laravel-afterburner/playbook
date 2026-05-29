@@ -2,6 +2,7 @@
 
 namespace Afterburner\Playbook\Tests\Unit;
 
+use Afterburner\Playbook\PlaybookRenderer;
 use Afterburner\Playbook\PlaybookRepository;
 use Afterburner\Playbook\Support\Playbook;
 use Afterburner\Playbook\Tests\TestCase;
@@ -55,6 +56,25 @@ class PlaybookRepositoryTest extends TestCase
         $this->assertSame('welcome', $page->slug);
     }
 
+    public function test_getting_started_group_sorts_before_other_groups(): void
+    {
+        Playbook::register([
+            'key' => 'platform',
+            'label' => 'Platform',
+            'order' => 0,
+            'path' => dirname(__DIR__, 2).'/playbook/platform',
+        ]);
+
+        $groups = app(PlaybookRepository::class)
+            ->pagesForSection('platform')
+            ->pluck('group')
+            ->unique()
+            ->values()
+            ->all();
+
+        $this->assertSame('Getting Started', $groups[0]);
+    }
+
     public function test_it_interpolates_placeholders_when_rendering(): void
     {
         Playbook::register([
@@ -66,7 +86,7 @@ class PlaybookRepositoryTest extends TestCase
 
         $repository = app(PlaybookRepository::class);
         $page = $repository->findPage('platform', 'welcome');
-        $rendered = app(\Afterburner\Playbook\PlaybookRenderer::class)->renderPage($page);
+        $rendered = app(PlaybookRenderer::class)->renderPage($page);
 
         $this->assertStringContainsString('Test App', $rendered['html']);
         $this->assertStringContainsString('strata', $rendered['html']);

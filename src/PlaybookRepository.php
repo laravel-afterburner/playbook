@@ -32,6 +32,7 @@ class PlaybookRepository
         return collect($this->pagesBySection()[$sectionKey] ?? [])
             ->filter(fn (PlaybookPage $page) => $this->pageIsVisible($page, $user))
             ->sortBy([
+                fn (PlaybookPage $page) => (int) ($page->meta['group_order'] ?? 100),
                 ['group', 'asc'],
                 ['order', 'asc'],
                 ['title', 'asc'],
@@ -43,6 +44,21 @@ class PlaybookRepository
     {
         return $this->pagesForSection($sectionKey, $user)
             ->first(fn (PlaybookPage $page) => $page->slug === $pageSlug);
+    }
+
+    /**
+     * @return Collection<int, PlaybookPage>
+     */
+    public function allPages(): Collection
+    {
+        return collect($this->pagesBySection())
+            ->flatMap(fn (array $pages) => $pages)
+            ->values();
+    }
+
+    public function isPageVisible(PlaybookPage $page, ?object $user): bool
+    {
+        return $this->pageIsVisible($page, $user);
     }
 
     public function firstPage(?object $user = null): ?PlaybookPage
@@ -117,7 +133,7 @@ class PlaybookRepository
             }
 
             $raw = file_get_contents($file->getPathname());
-            [$meta, ] = $this->parseFrontMatter($raw);
+            [$meta] = $this->parseFrontMatter($raw);
 
             $slug = (string) ($meta['slug'] ?? pathinfo($file->getFilename(), PATHINFO_FILENAME));
             $title = (string) ($meta['title'] ?? Str::headline($slug));
@@ -127,6 +143,7 @@ class PlaybookRepository
                 : ($groupDirectory ? Str::headline(str_replace('/', ' ', $groupDirectory)) : null);
 
             $requiresSystemAdmin = $this->pageRequiresSystemAdmin($meta, $relativePath);
+            $meta['group_order'] = $this->groupOrder($groupDirectory, $meta);
 
             $pages[] = new PlaybookPage(
                 sectionKey: $section->key,
@@ -177,6 +194,28 @@ class PlaybookRepository
         return 100;
     }
 
+    /**
+     * @param  array<string, mixed>  $meta
+     */
+    protected function groupOrder(?string $groupDirectory, array $meta): int
+    {
+        if (isset($meta['group_order'])) {
+            return (int) $meta['group_order'];
+        }
+
+        if ($groupDirectory === null) {
+            return 100;
+        }
+
+        $basename = basename(str_replace('\\', '/', $groupDirectory));
+
+        if (strtolower($basename) === 'getting-started') {
+            return 0;
+        }
+
+        return $this->orderFromFilename($basename);
+    }
+
     protected function pageIsVisible(PlaybookPage $page, ?object $user): bool
     {
         if ($page->systemAdmin && ! PlaybookAccess::isSystemAdmin($user)) {
@@ -211,5 +250,9 @@ class PlaybookRepository
     public function flush(): void
     {
         $this->pagesBySection = null;
+
+        if (app()->bound(PlaybookSearchService::class)) {
+            app(PlaybookSearchService::class)->flush();
+        }
     }
 }
