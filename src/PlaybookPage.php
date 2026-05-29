@@ -15,6 +15,7 @@ class PlaybookPage
         public readonly string $title,
         public readonly string $filePath,
         public readonly int $order = 100,
+        public readonly int $groupOrder = 100,
         public readonly ?string $group = null,
         public readonly ?string $feature = null,
         public readonly bool $systemAdmin = false,

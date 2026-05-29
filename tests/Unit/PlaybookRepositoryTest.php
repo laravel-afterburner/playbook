@@ -75,6 +75,51 @@ class PlaybookRepositoryTest extends TestCase
         $this->assertSame('Getting Started', $groups[0]);
     }
 
+    public function test_getting_started_group_sorts_before_alphabetically_earlier_groups(): void
+    {
+        Playbook::register([
+            'key' => 'communications',
+            'label' => 'Communications',
+            'order' => 30,
+            'path' => dirname(__DIR__).'/Fixtures/playbook/communications',
+        ]);
+
+        $groups = app(PlaybookRepository::class)
+            ->pagesForSection('communications')
+            ->pluck('group')
+            ->unique()
+            ->values()
+            ->all();
+
+        $this->assertSame([
+            'Getting Started',
+            'Communication Log',
+            'Discussions',
+        ], $groups);
+    }
+
+    public function test_getting_started_group_sorts_before_ballots(): void
+    {
+        Playbook::register([
+            'key' => 'voting',
+            'label' => 'Voting',
+            'order' => 40,
+            'path' => dirname(__DIR__).'/Fixtures/playbook/voting',
+        ]);
+
+        $groups = app(PlaybookRepository::class)
+            ->pagesForSection('voting')
+            ->pluck('group')
+            ->unique()
+            ->values()
+            ->all();
+
+        $this->assertSame([
+            'Getting Started',
+            'Ballots',
+        ], $groups);
+    }
+
     public function test_it_interpolates_placeholders_when_rendering(): void
     {
         Playbook::register([

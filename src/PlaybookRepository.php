@@ -32,7 +32,7 @@ class PlaybookRepository
         return collect($this->pagesBySection()[$sectionKey] ?? [])
             ->filter(fn (PlaybookPage $page) => $this->pageIsVisible($page, $user))
             ->sortBy([
-                fn (PlaybookPage $page) => (int) ($page->meta['group_order'] ?? 100),
+                ['groupOrder', 'asc'],
                 ['group', 'asc'],
                 ['order', 'asc'],
                 ['title', 'asc'],
@@ -143,7 +143,8 @@ class PlaybookRepository
                 : ($groupDirectory ? Str::headline(str_replace('/', ' ', $groupDirectory)) : null);
 
             $requiresSystemAdmin = $this->pageRequiresSystemAdmin($meta, $relativePath);
-            $meta['group_order'] = $this->groupOrder($groupDirectory, $meta);
+            $groupOrder = $this->groupOrder($groupDirectory, $meta);
+            $meta['group_order'] = $groupOrder;
 
             $pages[] = new PlaybookPage(
                 sectionKey: $section->key,
@@ -151,6 +152,7 @@ class PlaybookRepository
                 title: $title,
                 filePath: $file->getPathname(),
                 order: $order,
+                groupOrder: $groupOrder,
                 group: $group,
                 feature: isset($meta['feature']) ? (string) $meta['feature'] : null,
                 systemAdmin: $requiresSystemAdmin,
