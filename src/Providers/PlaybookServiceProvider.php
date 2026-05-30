@@ -4,12 +4,17 @@ namespace Afterburner\Playbook\Providers;
 
 use Afterburner\Playbook\Console\Commands\InstallCommand;
 use Afterburner\Playbook\Console\Commands\ValidatePlaybookCommand;
-use Afterburner\Playbook\PlaybookRepository;
+use Afterburner\Playbook\Livewire\PlaybookSearch;
 use Afterburner\Playbook\PlaybookRenderer;
+use Afterburner\Playbook\PlaybookRepository;
+use Afterburner\Playbook\PlaybookSearchService;
 use Afterburner\Playbook\Support\Playbook;
+use Afterburner\Playbook\Support\UiDisplayName;
 use App\Models\Team;
 use App\Support\TeamNavigation;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Livewire\Livewire;
 
 class PlaybookServiceProvider extends ServiceProvider
 {
@@ -26,6 +31,7 @@ class PlaybookServiceProvider extends ServiceProvider
 
         $this->app->singleton(PlaybookRepository::class);
         $this->app->singleton(PlaybookRenderer::class);
+        $this->app->singleton(PlaybookSearchService::class);
     }
 
     public function boot(): void
@@ -44,6 +50,12 @@ class PlaybookServiceProvider extends ServiceProvider
 
         $this->loadViewsFrom(__DIR__.'/../../resources/views', 'afterburner-playbook');
         $this->loadRoutesFrom(__DIR__.'/../../routes/web.php');
+
+        View::composer('afterburner-playbook::*', function ($view): void {
+            $view->with('helpSupportName', UiDisplayName::LABEL);
+        });
+
+        Livewire::component('playbook-search', PlaybookSearch::class);
 
         $this->registerPlatformSection();
         $this->registerEntityNavigation();
@@ -78,10 +90,10 @@ class PlaybookServiceProvider extends ServiceProvider
         }
 
         TeamNavigation::register([
-            'label' => 'Playbook',
+            'label' => UiDisplayName::LABEL,
             'route' => 'playbook.index',
             'route_params' => fn () => [],
-            'placement' => 'after-members',
+            'placement' => 'after-system-settings',
             'order' => 10,
             'permission' => fn ($user) => $user?->currentTeam !== null,
             'active' => fn () => request()->routeIs('playbook.*'),

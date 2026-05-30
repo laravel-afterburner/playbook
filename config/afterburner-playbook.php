@@ -15,7 +15,7 @@ return [
     | Navigation
     |--------------------------------------------------------------------------
     |
-    | When true, a Playbook link is added to the entity dropdown menu.
+    | When true, a Help & Support link is added to the entity dropdown menu.
     |
     */
 
@@ -26,13 +26,25 @@ return [
     | Default Section
     |--------------------------------------------------------------------------
     |
-    | The section and page slug used when visiting /playbook.
+    | The section and page slug used when visiting /help.
     |
     */
 
     'default_section' => env('AFTERBURNER_PLAYBOOK_DEFAULT_SECTION', 'platform'),
 
     'default_page' => env('AFTERBURNER_PLAYBOOK_DEFAULT_PAGE', 'welcome'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Search
+    |--------------------------------------------------------------------------
+    */
+
+    'search' => [
+        'min_query_length' => (int) env('AFTERBURNER_PLAYBOOK_SEARCH_MIN_QUERY_LENGTH', 2),
+        'max_results' => (int) env('AFTERBURNER_PLAYBOOK_SEARCH_MAX_RESULTS', 20),
+        'cache_ttl' => env('AFTERBURNER_PLAYBOOK_SEARCH_CACHE_TTL'),
+    ],
 
     /*
     |--------------------------------------------------------------------------

@@ -6,9 +6,9 @@ order: 10
 
 ## Introduction
 
-Welcome to the {{ app_name }} playbook. This guide explains how to run the application — from signing in and managing your {{ entity_label }} to working with roles, announcements, and notifications.
+Welcome to {{ app_name }} **Help & Support**. This guide explains how to run the application — from signing in and managing your {{ entity_label }} to working with roles, announcements, and notifications.
 
-Unlike the **Documents** library (where your organization stores files), the playbook is built-in help content that ships with the platform and optional packages.
+Unlike the **Documents** library (where your organization stores files), Help & Support is built-in help content that ships with the platform and optional packages.
 
 ## Who this is for
 
@@ -16,7 +16,7 @@ Unlike the **Documents** library (where your organization stores files), the pla
 - **Council and staff** running day-to-day workflows
 - **System administrators** managing audit logs and impersonation
 
-## How to use the playbook
+## How to use Help & Support
 
 Use the sidebar to browse sections. Each page includes an **On this page** table of contents when subsections are present.
 
@@ -24,5 +24,5 @@ Package-specific guides (Documents, Meetings, Voting, and others) appear automat
 
 ## Next steps
 
-- [Navigating the application](/playbook/platform/navigation)
-- [Understanding your {{ entity_label }}](/playbook/platform/entity-overview)
+- [Navigating the application](/help/platform/navigation)
+- [Understanding your {{ entity_label }}](/help/platform/entity-overview)

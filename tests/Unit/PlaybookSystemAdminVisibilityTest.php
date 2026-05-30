@@ -5,7 +5,6 @@ namespace Afterburner\Playbook\Tests\Unit;
 use Afterburner\Playbook\PlaybookRepository;
 use Afterburner\Playbook\Support\Playbook;
 use Afterburner\Playbook\Tests\TestCase;
-use App\Models\User;
 
 class PlaybookSystemAdminVisibilityTest extends TestCase
 {

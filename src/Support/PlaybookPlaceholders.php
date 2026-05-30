@@ -11,6 +11,7 @@ class PlaybookPlaceholders
         $entityLabel = (string) config('afterburner.entity_label', 'entity');
 
         $replacements = [
+            '/playbook/' => '/'.HelpSupportRoute::PREFIX.'/',
             '{{ entity_label }}' => $entityLabel,
             '{{ entity_label_title }}' => Str::title($entityLabel),
             '{{ entity_label_plural }}' => Str::plural($entityLabel),

@@ -23,7 +23,7 @@ Administrators can remove members who no longer belong to the {{ entity_label }}
 
 ## Roles on invitation
 
-Assign the appropriate role when inviting someone. Roles control which features and actions are available. See [Understanding roles](/playbook/platform/understanding-roles).
+Assign the appropriate role when inviting someone. Roles control which features and actions are available. See [Understanding roles](/help/platform/understanding-roles).
 
 ## Leaving a {{ entity_label }}
 

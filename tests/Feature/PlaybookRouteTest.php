@@ -3,13 +3,12 @@
 namespace Afterburner\Playbook\Tests\Feature;
 
 use Afterburner\Playbook\Tests\TestCase;
-use App\Models\User;
 
 class PlaybookRouteTest extends TestCase
 {
     public function test_guests_cannot_access_playbook(): void
     {
-        $this->get('/playbook')->assertRedirect('/login');
+        $this->get('/help')->assertRedirect('/login');
     }
 
     public function test_authenticated_users_are_redirected_to_default_page(): void
@@ -17,7 +16,7 @@ class PlaybookRouteTest extends TestCase
         $user = $this->createVerifiedUser();
 
         $this->actingAs($user)
-            ->get('/playbook')
+            ->get('/help')
             ->assertRedirect(route('playbook.show', [
                 'section' => 'platform',
                 'page' => 'welcome',
@@ -29,7 +28,8 @@ class PlaybookRouteTest extends TestCase
         $user = $this->createVerifiedUser();
 
         $this->actingAs($user)
-            ->get('/playbook/platform/does-not-exist')
+            ->get('/help/platform/does-not-exist')
             ->assertNotFound();
     }
+
 }

@@ -22,7 +22,7 @@ Add the path repository when developing locally:
 
 ## Usage
 
-Visit `/playbook` when signed in. A **Playbook** link is added to the entity dropdown menu by default.
+Visit `/help` when signed in. A **Help & Support** link is added to the entity dropdown menu (below **System Settings**) by default.
 
 ## Registering a section from a package
 
@@ -41,11 +41,11 @@ if (class_exists(Playbook::class)) {
     ]);
 }
 
-// Entity menu link (after Members):
+// Entity menu link (after System Settings):
 TeamNavigation::register([
-    'label' => 'Playbook',
+    'label' => 'Help & Support',
     'route' => 'playbook.index',
-    'placement' => 'after-members',
+    'placement' => 'after-system-settings',
     'order' => 20,
     ...
 ]);
@@ -98,7 +98,7 @@ Use these in markdown body copy:
 ### Internal links
 
 ```markdown
-See [Entity overview](/playbook/platform/entity-overview).
+See [Entity overview](/help/platform/entity-overview).
 ```
 
 Validate links:
@@ -110,6 +110,8 @@ php artisan playbook:validate
 ## Configuration
 
 Publish config with `php artisan vendor:publish --tag=afterburner-playbook-config`.
+
+If you previously published views (`afterburner-playbook-assets`), republish or delete `resources/views/vendor/afterburner-playbook` so UI updates apply — published views override the package.
 
 | Variable | Default | Description |
 |----------|---------|-------------|

@@ -24,7 +24,7 @@ class InstallCommand extends Command
 
         $this->info('Installation complete!');
         $this->newLine();
-        $this->comment('Visit /playbook to browse the in-app documentation.');
+        $this->comment('Visit /help to browse Help & Support.');
 
         return Command::SUCCESS;
     }

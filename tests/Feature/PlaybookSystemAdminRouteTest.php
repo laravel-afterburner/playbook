@@ -11,11 +11,11 @@ class PlaybookSystemAdminRouteTest extends TestCase
         $user = $this->createVerifiedUser(['is_system_admin' => false]);
 
         $this->actingAs($user)
-            ->get('/playbook/platform/audit-trail')
+            ->get('/help/platform/audit-trail')
             ->assertNotFound();
 
         $this->actingAs($user)
-            ->get('/playbook/platform/impersonation')
+            ->get('/help/platform/impersonation')
             ->assertNotFound();
     }
 }

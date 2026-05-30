@@ -20,7 +20,7 @@ class PlaybookController extends Controller
         $page = $this->repository->defaultPage(auth()->user());
 
         if (! $page) {
-            abort(404, 'No playbook pages are available.');
+            abort(404, 'No help pages are available.');
         }
 
         return redirect()->route('playbook.show', $page->routeParameters());

@@ -20,9 +20,9 @@ Open your profile menu (top right) to access:
 - **Security** — password, two-factor authentication, and passkeys
 - **Notifications** — in-app notification center
 
-## Playbook
+## Help & Support
 
-Open **Playbook** from your {{ entity_label }} menu to return to this guide at any time.
+Open **Help & Support** from your {{ entity_label }} menu to return to this guide at any time.
 
 ## Dashboard
 

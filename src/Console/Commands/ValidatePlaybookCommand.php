@@ -3,6 +3,7 @@
 namespace Afterburner\Playbook\Console\Commands;
 
 use Afterburner\Playbook\PlaybookRepository;
+use Afterburner\Playbook\Support\HelpSupportRoute;
 use Illuminate\Console\Command;
 
 class ValidatePlaybookCommand extends Command
@@ -19,7 +20,9 @@ class ValidatePlaybookCommand extends Command
             foreach ($repository->pagesForSection($section->key) as $page) {
                 $contents = file_get_contents($page->filePath);
 
-                if (! preg_match_all('/\]\(\/playbook\/([a-z0-9-]+)\/([a-z0-9-]+)\)/', $contents, $matches, PREG_SET_ORDER)) {
+                $pattern = '/\]\(\/'.preg_quote(HelpSupportRoute::PREFIX, '/').'\/([a-z0-9-]+)\/([a-z0-9-]+)\)/';
+
+                if (! preg_match_all($pattern, $contents, $matches, PREG_SET_ORDER)) {
                     continue;
                 }
 
@@ -27,7 +30,7 @@ class ValidatePlaybookCommand extends Command
                     $target = $repository->findPage($match[1], $match[2]);
 
                     if (! $target) {
-                        $this->error("Broken link in {$page->sectionKey}/{$page->slug}: /playbook/{$match[1]}/{$match[2]}");
+                        $this->error("Broken link in {$page->sectionKey}/{$page->slug}: ".HelpSupportRoute::uri($match[1], $match[2]));
                         $failures++;
                     }
                 }

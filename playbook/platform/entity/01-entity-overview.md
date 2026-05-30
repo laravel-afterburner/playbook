@@ -24,6 +24,6 @@ If permitted, create a new {{ entity_label }} from the {{ entity_label }} switch
 
 ## Related guides
 
-- [Members and invitations](/playbook/platform/members-and-invitations)
-- [{{ entity_label_title }} branding](/playbook/platform/branding)
-- [Understanding roles](/playbook/platform/understanding-roles)
+- [Members and invitations](/help/platform/members-and-invitations)
+- [{{ entity_label_title }} branding](/help/platform/branding)
+- [Understanding roles](/help/platform/understanding-roles)
