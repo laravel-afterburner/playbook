@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <x-afterburner-playbook::page-header :section="$helpSupportName" :detail="$page->displayTitle()" />
-            <div class="flex w-full max-w-md items-center gap-2 sm:max-w-none">
+            <div class="ms-auto flex shrink-0 items-center gap-2">
                 <livewire:playbook-search />
                 <livewire:playbook-contact-support />
             </div>
