@@ -4,6 +4,7 @@ namespace Afterburner\Playbook\Providers;
 
 use Afterburner\Playbook\Console\Commands\InstallCommand;
 use Afterburner\Playbook\Console\Commands\ValidatePlaybookCommand;
+use Afterburner\Playbook\Livewire\PlaybookContactSupport;
 use Afterburner\Playbook\Livewire\PlaybookSearch;
 use Afterburner\Playbook\PlaybookRenderer;
 use Afterburner\Playbook\PlaybookRepository;
@@ -56,6 +57,7 @@ class PlaybookServiceProvider extends ServiceProvider
         });
 
         Livewire::component('playbook-search', PlaybookSearch::class);
+        Livewire::component('playbook-contact-support', PlaybookContactSupport::class);
 
         $this->registerPlatformSection();
         $this->registerEntityNavigation();

@@ -2,6 +2,7 @@
 
 namespace Afterburner\Playbook\Tests\Unit;
 
+use Afterburner\Playbook\Livewire\PlaybookContactSupport;
 use Afterburner\Playbook\Livewire\PlaybookSearch;
 use Afterburner\Playbook\PlaybookRepository;
 use Afterburner\Playbook\Support\HelpSupportRoute;
@@ -48,5 +49,11 @@ class PlaybookUiTest extends TestCase
         Livewire::test(PlaybookSearch::class)
             ->assertSee('Search Help & Support')
             ->assertDontSee('Search playbook');
+    }
+
+    public function test_contact_support_component_renders_email_button(): void
+    {
+        Livewire::test(PlaybookContactSupport::class)
+            ->assertSee('Contact support');
     }
 }

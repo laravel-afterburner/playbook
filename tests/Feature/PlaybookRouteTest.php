@@ -31,5 +31,4 @@ class PlaybookRouteTest extends TestCase
             ->get('/help/platform/does-not-exist')
             ->assertNotFound();
     }
-
 }

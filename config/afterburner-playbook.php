@@ -48,6 +48,17 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Contact Support
+    |--------------------------------------------------------------------------
+    */
+
+    'contact_support' => [
+        'subject_max_length' => (int) env('AFTERBURNER_PLAYBOOK_SUPPORT_SUBJECT_MAX_LENGTH', 255),
+        'message_max_length' => (int) env('AFTERBURNER_PLAYBOOK_SUPPORT_MESSAGE_MAX_LENGTH', 5000),
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Audit Skip Routes
     |--------------------------------------------------------------------------
     */
