@@ -24,6 +24,18 @@ Add the path repository when developing locally:
 
 Visit `/help` when signed in. A **Help & Support** link is added to the entity dropdown menu (below **Subscriptions**, above **System Settings**) by default.
 
+### FAQ
+
+Visit `/help/faq` for frequently asked questions. All authenticated users can browse published FAQs. System administrators can create, edit, reorder, publish, and delete FAQs from the same page.
+
+The FAQ sidebar link is hidden from regular users until at least one published FAQ exists. System administrators always see it so they can add the first entry.
+
+After installing or upgrading, run migrations so the `playbook_faqs` table exists:
+
+```bash
+php artisan migrate
+```
+
 ## Registering a section from a package
 
 ```php
@@ -65,8 +77,8 @@ playbook/
 title: Scheduling an AGM
 slug: scheduling-an-agm
 order: 10
-feature: team-announcements
-system_admin: false
+group: scheduling
+group_order: 100
 ---
 
 ## Before you begin
@@ -82,7 +94,7 @@ Supported front matter keys:
 | `order` | Sort order within group |
 | `group` | Sidebar group label (defaults to folder name) |
 | `group_order` | Sort order for sidebar groups (defaults to `0` for `getting-started/` folders, otherwise `100`) |
-| `feature` | Hide unless `App\Support\Features` flag is enabled |
+| `feature` | Hide unless `App\Support\Features` flag is enabled (typically used for optional platform security pages) |
 | `system_admin` | Restrict to system administrators (`true` by default for pages under a `system-admin/` folder) |
 
 ### Placeholders

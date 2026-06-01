@@ -5,11 +5,13 @@ namespace Afterburner\Playbook\Providers;
 use Afterburner\Playbook\Console\Commands\InstallCommand;
 use Afterburner\Playbook\Console\Commands\ValidatePlaybookCommand;
 use Afterburner\Playbook\Livewire\PlaybookContactSupport;
+use Afterburner\Playbook\Livewire\PlaybookFaqSection;
 use Afterburner\Playbook\Livewire\PlaybookSearch;
 use Afterburner\Playbook\PlaybookRenderer;
 use Afterburner\Playbook\PlaybookRepository;
 use Afterburner\Playbook\PlaybookSearchService;
 use Afterburner\Playbook\Support\Playbook;
+use Afterburner\Playbook\Support\PlaybookFaqNavigation;
 use Afterburner\Playbook\Support\UiDisplayName;
 use App\Models\Team;
 use App\Support\TeamNavigation;
@@ -49,15 +51,22 @@ class PlaybookServiceProvider extends ServiceProvider
             __DIR__.'/../../resources/views' => resource_path('views/vendor/afterburner-playbook'),
         ], 'afterburner-playbook-assets');
 
+        $this->publishes([
+            __DIR__.'/../../database/migrations' => database_path('migrations'),
+        ], 'afterburner-playbook-migrations');
+
         $this->loadViewsFrom(__DIR__.'/../../resources/views', 'afterburner-playbook');
+        $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
         $this->loadRoutesFrom(__DIR__.'/../../routes/web.php');
 
         View::composer('afterburner-playbook::*', function ($view): void {
             $view->with('helpSupportName', UiDisplayName::LABEL);
+            $view->with('showFaqNav', PlaybookFaqNavigation::isVisible(auth()->user()));
         });
 
         Livewire::component('playbook-search', PlaybookSearch::class);
         Livewire::component('playbook-contact-support', PlaybookContactSupport::class);
+        Livewire::component('playbook-faq-section', PlaybookFaqSection::class);
 
         $this->registerPlatformSection();
         $this->registerEntityNavigation();

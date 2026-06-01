@@ -66,6 +66,7 @@ return [
     'audit' => [
         'skip_routes' => [
             'playbook.index',
+            'playbook.faq',
             'playbook.section',
             'playbook.show',
         ],

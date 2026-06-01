@@ -2,10 +2,14 @@
 
 namespace Afterburner\Playbook\Http\Controllers;
 
+use Afterburner\Playbook\PlaybookPage;
 use Afterburner\Playbook\PlaybookRenderer;
 use Afterburner\Playbook\PlaybookRepository;
+use Afterburner\Playbook\PlaybookSection;
+use Afterburner\Playbook\Support\PlaybookFaqNavigation;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Collection;
 use Illuminate\View\View;
 
 class PlaybookController extends Controller
@@ -24,6 +28,17 @@ class PlaybookController extends Controller
         }
 
         return redirect()->route('playbook.show', $page->routeParameters());
+    }
+
+    public function faq(): View
+    {
+        $user = auth()->user();
+
+        abort_unless(PlaybookFaqNavigation::isVisible($user), 404);
+
+        return view('afterburner-playbook::faq', [
+            'sidebarSections' => $this->sidebarSections($user),
+        ]);
     }
 
     public function section(string $section): RedirectResponse
@@ -61,7 +76,21 @@ class PlaybookController extends Controller
         $visibleSections = $this->repository->visibleSections($user);
         $currentSection = $visibleSections->firstWhere('key', $section);
 
-        $sidebarSections = $visibleSections->map(function ($navSection) use ($user) {
+        return view('afterburner-playbook::show', [
+            'page' => $playbookPage,
+            'section' => $currentSection,
+            'sidebarSections' => $this->sidebarSections($user),
+            'content' => $rendered['html'],
+            'headings' => $rendered['headings'],
+        ]);
+    }
+
+    /**
+     * @return Collection<int, array{section: PlaybookSection, groups: Collection<string, Collection<int, PlaybookPage>>}>
+     */
+    protected function sidebarSections(?object $user): Collection
+    {
+        return $this->repository->visibleSections($user)->map(function ($navSection) use ($user) {
             $groups = $this->repository->pagesForSection($navSection->key, $user)
                 ->groupBy(fn ($item) => $item->group ?? 'General')
                 ->filter(fn ($groupPages) => $groupPages->isNotEmpty());
@@ -71,13 +100,5 @@ class PlaybookController extends Controller
                 'groups' => $groups,
             ];
         })->filter(fn (array $item) => $item['groups']->isNotEmpty())->values();
-
-        return view('afterburner-playbook::show', [
-            'page' => $playbookPage,
-            'section' => $currentSection,
-            'sidebarSections' => $sidebarSections,
-            'content' => $rendered['html'],
-            'headings' => $rendered['headings'],
-        ]);
     }
 }

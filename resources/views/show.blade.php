@@ -17,6 +17,7 @@
                         'sidebarSections' => $sidebarSections,
                         'section' => $section,
                         'page' => $page,
+                        'activeFaq' => false,
                     ])
                 </div>
             </aside>

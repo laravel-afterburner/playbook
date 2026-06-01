@@ -8,6 +8,9 @@ Route::middleware(['web', 'auth', 'verified'])->group(function () {
     Route::get(HelpSupportRoute::uri(), [PlaybookController::class, 'index'])
         ->name('playbook.index');
 
+    Route::get(HelpSupportRoute::uri('faq'), [PlaybookController::class, 'faq'])
+        ->name('playbook.faq');
+
     Route::get(HelpSupportRoute::uri('{section}'), [PlaybookController::class, 'section'])
         ->name('playbook.section');
 

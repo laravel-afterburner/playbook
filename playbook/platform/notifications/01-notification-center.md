@@ -6,7 +6,9 @@ order: 10
 
 ## Overview
 
-The notification center collects in-app notifications from across the application — invitations, announcements, meeting updates, ballot events, and more.
+The notification center collects in-app notifications from across the application — invitations, announcements, meeting updates, ballot events, maintenance updates, and more.
+
+For one-way broadcasts, see [Posting announcements](/help/communications/posting-announcements) when the Communications package is installed.
 
 ## Opening notifications
 

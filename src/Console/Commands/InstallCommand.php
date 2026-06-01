@@ -20,10 +20,16 @@ class InstallCommand extends Command
             '--force' => true,
         ]);
 
+        $this->call('vendor:publish', [
+            '--tag' => 'afterburner-playbook-migrations',
+            '--force' => true,
+        ]);
+
         $this->addEnvironmentVariables();
 
         $this->info('Installation complete!');
         $this->newLine();
+        $this->comment('Run php artisan migrate to create FAQ tables.');
         $this->comment('Visit /help to browse Help & Support.');
 
         return Command::SUCCESS;
