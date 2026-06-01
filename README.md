@@ -22,7 +22,7 @@ Add the path repository when developing locally:
 
 ## Usage
 
-Visit `/help` when signed in. A **Help & Support** link is added to the entity dropdown menu (below **System Settings**) by default.
+Visit `/help` when signed in. A **Help & Support** link is added to the entity dropdown menu (below **Subscriptions**, above **System Settings**) by default.
 
 ## Registering a section from a package
 
@@ -41,11 +41,10 @@ if (class_exists(Playbook::class)) {
     ]);
 }
 
-// Entity menu link (after System Settings):
+// Entity menu link (order > Subscriptions' 15, default placement):
 TeamNavigation::register([
     'label' => 'Help & Support',
     'route' => 'playbook.index',
-    'placement' => 'after-system-settings',
     'order' => 20,
     ...
 ]);

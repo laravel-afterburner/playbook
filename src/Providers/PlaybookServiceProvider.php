@@ -95,8 +95,7 @@ class PlaybookServiceProvider extends ServiceProvider
             'label' => UiDisplayName::LABEL,
             'route' => 'playbook.index',
             'route_params' => fn () => [],
-            'placement' => 'after-system-settings',
-            'order' => 10,
+            'order' => 20,
             'permission' => fn ($user) => $user?->currentTeam !== null,
             'active' => fn () => request()->routeIs('playbook.*'),
         ]);
