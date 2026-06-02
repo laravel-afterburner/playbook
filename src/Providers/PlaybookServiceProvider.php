@@ -106,7 +106,7 @@ class PlaybookServiceProvider extends ServiceProvider
             'route_params' => fn () => [],
             'order' => 20,
             'permission' => fn ($user) => $user?->currentTeam !== null,
-            'active' => fn () => request()->routeIs('playbook.*'),
+            'active' => fn () => \App\Support\NavigationActive::routeIs('playbook.*'),
         ]);
     }
 
