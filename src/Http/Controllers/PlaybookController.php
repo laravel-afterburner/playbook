@@ -7,6 +7,8 @@ use Afterburner\Playbook\PlaybookRenderer;
 use Afterburner\Playbook\PlaybookRepository;
 use Afterburner\Playbook\PlaybookSection;
 use Afterburner\Playbook\Support\PlaybookFaqNavigation;
+use Afterburner\Playbook\Support\PlaybookPermissions;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Collection;
@@ -21,7 +23,10 @@ class PlaybookController extends Controller
 
     public function index(): RedirectResponse|View
     {
-        $page = $this->repository->defaultPage(auth()->user());
+        $user = auth()->user();
+        abort_unless($user instanceof User && $user->currentTeam && PlaybookPermissions::canAccessModule($user, $user->currentTeam), 403);
+
+        $page = $this->repository->defaultPage($user);
 
         if (! $page) {
             abort(404, 'No help pages are available.');
@@ -34,7 +39,7 @@ class PlaybookController extends Controller
     {
         $user = auth()->user();
 
-        abort_unless(PlaybookFaqNavigation::isVisible($user), 404);
+        abort_unless($user instanceof User && PlaybookPermissions::canViewFaqs($user, $user->currentTeam), 403);
 
         return view('afterburner-playbook::faq', [
             'sidebarSections' => $this->sidebarSections($user),
@@ -44,6 +49,7 @@ class PlaybookController extends Controller
     public function section(string $section): RedirectResponse
     {
         $user = auth()->user();
+        abort_unless($user instanceof User && $user->currentTeam && PlaybookPermissions::canAccessModule($user, $user->currentTeam), 403);
 
         if (! $this->repository->visibleSections($user)->contains(fn ($item) => $item->key === $section)) {
             abort(404);
@@ -61,6 +67,7 @@ class PlaybookController extends Controller
     public function show(string $section, string $page): View
     {
         $user = auth()->user();
+        abort_unless($user instanceof User && $user->currentTeam && PlaybookPermissions::canAccessModule($user, $user->currentTeam), 403);
 
         if (! $this->repository->visibleSections($user)->contains(fn ($item) => $item->key === $section)) {
             abort(404);

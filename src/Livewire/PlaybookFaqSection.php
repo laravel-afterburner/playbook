@@ -4,7 +4,8 @@ namespace Afterburner\Playbook\Livewire;
 
 use Afterburner\Playbook\Models\PlaybookFaq;
 use Afterburner\Playbook\Support\DispatchesBanner;
-use Afterburner\Playbook\Support\PlaybookAccess;
+use Afterburner\Playbook\Support\PlaybookPermissions;
+use App\Models\User;
 use Illuminate\Support\Collection;
 use Livewire\Component;
 
@@ -135,7 +136,21 @@ class PlaybookFaqSection extends Component
 
     public function canManage(): bool
     {
-        return PlaybookAccess::isSystemAdmin(auth()->user());
+        $user = auth()->user();
+
+        if (! $user instanceof User) {
+            return false;
+        }
+
+        return PlaybookPermissions::canManageFaqs($user, $user->currentTeam);
+    }
+
+    public function mount(): void
+    {
+        $user = auth()->user();
+
+        abort_unless($user instanceof User, 403);
+        abort_unless(PlaybookPermissions::canViewFaqs($user, $user->currentTeam), 403);
     }
 
     /**

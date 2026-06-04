@@ -2,16 +2,16 @@
 
 namespace Afterburner\Playbook\Support;
 
-use Afterburner\Playbook\Models\PlaybookFaq;
+use App\Models\User;
 
 class PlaybookFaqNavigation
 {
     public static function isVisible(?object $user): bool
     {
-        if (PlaybookAccess::isSystemAdmin($user)) {
-            return true;
+        if (! $user instanceof User) {
+            return false;
         }
 
-        return PlaybookFaq::query()->published()->exists();
+        return PlaybookPermissions::canViewFaqs($user, $user->currentTeam);
     }
 }

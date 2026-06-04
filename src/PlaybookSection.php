@@ -2,6 +2,9 @@
 
 namespace Afterburner\Playbook;
 
+use Afterburner\Playbook\Support\PlaybookPermissions;
+use App\Models\User;
+
 class PlaybookSection
 {
     /**
@@ -37,7 +40,11 @@ class PlaybookSection
         }
 
         if ($this->permission === null) {
-            return true;
+            if (! $user instanceof User || ! $user->currentTeam) {
+                return false;
+            }
+
+            return PlaybookPermissions::canAccessModule($user, $user->currentTeam);
         }
 
         if (! is_callable($this->permission)) {

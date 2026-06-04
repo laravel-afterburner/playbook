@@ -39,7 +39,7 @@ class PlaybookFaqTest extends TestCase
 
         $this->actingAs($user)
             ->get('/help/faq')
-            ->assertNotFound();
+            ->assertForbidden();
     }
 
     public function test_system_admins_can_access_faq_page_without_published_faqs(): void
@@ -148,6 +148,13 @@ class PlaybookFaqTest extends TestCase
 
     public function test_regular_users_cannot_create_faqs(): void
     {
+        PlaybookFaq::query()->create([
+            'question' => 'Published question',
+            'answer' => 'Published answer',
+            'sort_order' => 1,
+            'is_published' => true,
+        ]);
+
         $user = $this->createVerifiedUser(['is_system_admin' => false]);
 
         Livewire::actingAs($user)

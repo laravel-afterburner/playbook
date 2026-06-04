@@ -22,13 +22,21 @@ Add the path repository when developing locally:
 
 ## Usage
 
-Visit `/help` when signed in. A **Help & Support** link is added to the entity dropdown menu (below **Subscriptions**, above **System Settings**) by default.
+Visit `/help` when signed in. A **Help & Support** link is registered via `TeamNavigation` (default placement `system-support` in strata apps, or `default` / order 20 in other hosts).
 
 ### FAQ
 
-Visit `/help/faq` for frequently asked questions. All authenticated users can browse published FAQs. System administrators can create, edit, reorder, publish, and delete FAQs from the same page.
+Visit `/help/faq` for frequently asked questions. FAQ access is separate from playbook documentation:
 
-The FAQ sidebar link is hidden from regular users until at least one published FAQ exists. System administrators always see it so they can add the first entry.
+| Permission slug | Purpose |
+| --- | --- |
+| `view_playbook` | Read in-app help documentation |
+| `view_playbook_faqs` | View published FAQs |
+| `manage_playbook_faqs` | Create, edit, reorder, publish, and delete FAQs (implies view) |
+
+In Strata, assign these under **Help** in Role Manager. `manage_playbook_faqs` bundles `view_playbook_faqs`. Users can hold FAQ permissions without `view_playbook`.
+
+When team RBAC is unavailable (standalone package tests), published FAQs remain visible to authenticated users. System administrators always have full FAQ access.
 
 After installing or upgrading, run migrations so the `playbook_faqs` table exists:
 

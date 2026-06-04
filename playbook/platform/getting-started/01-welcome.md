@@ -29,9 +29,9 @@ The sidebar lists every section you can access. Typical sections include:
 | **Communications** | Announcements and discussions (when installed) |
 | **Voting** | Ballots, proxy votes, results (when installed) |
 | **Subscriptions** | Billing and plans (when installed) |
-| **Finances**, **Maintenance**, **Properties** | Strata-specific areas (when your app is configured for strata) |
+| **Dashboard**, **Directory**, **Compliance**, **Properties**, **Finances**, **Insurance**, **Maintenance**, **Administration** | Strata-specific areas (when configured for strata) |
 
-Sections appear only when the related package is installed and you have permission to use it.
+Sections appear only when the related package is installed and you have permission to use them.
 
 ## Search and contact support
 

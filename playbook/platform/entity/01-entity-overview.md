@@ -28,3 +28,4 @@ If permitted, create a new {{ entity_label }} from the {{ entity_label }} switch
 - [{{ entity_label_title }} branding](/help/platform/branding)
 - [System settings](/help/platform/system-settings)
 - [Understanding roles](/help/platform/understanding-roles)
+- [Managing roles](/help/platform/managing-roles)

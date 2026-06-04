@@ -37,5 +37,6 @@ Open the **Members** page, select a member, and update their assigned role. Chan
 
 ## Related guides
 
+- [Managing roles](/help/platform/managing-roles)
 - [Members and invitations](/help/platform/members-and-invitations)
 - [{{ entity_label_title }} overview](/help/platform/entity-overview)

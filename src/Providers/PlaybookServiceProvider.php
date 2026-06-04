@@ -3,6 +3,7 @@
 namespace Afterburner\Playbook\Providers;
 
 use Afterburner\Playbook\Console\Commands\InstallCommand;
+use Afterburner\Playbook\Database\Seeders\PlaybookPermissionsSeeder;
 use Afterburner\Playbook\Console\Commands\ValidatePlaybookCommand;
 use Afterburner\Playbook\Livewire\PlaybookContactSupport;
 use Afterburner\Playbook\Livewire\PlaybookFaqSection;
@@ -12,8 +13,10 @@ use Afterburner\Playbook\PlaybookRepository;
 use Afterburner\Playbook\PlaybookSearchService;
 use Afterburner\Playbook\Support\Playbook;
 use Afterburner\Playbook\Support\PlaybookFaqNavigation;
+use Afterburner\Playbook\Support\PlaybookPermissions;
 use Afterburner\Playbook\Support\UiDisplayName;
 use App\Models\Team;
+use App\Support\PackageSeederRegistry;
 use App\Support\TeamNavigation;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -70,6 +73,7 @@ class PlaybookServiceProvider extends ServiceProvider
 
         $this->registerPlatformSection();
         $this->registerEntityNavigation();
+        $this->registerPackageSeeder();
         $this->registerAuditSkipRoutes();
 
         if ($this->app->runningInConsole()) {
@@ -104,10 +108,19 @@ class PlaybookServiceProvider extends ServiceProvider
             'label' => UiDisplayName::LABEL,
             'route' => 'playbook.index',
             'route_params' => fn () => [],
+            'placement' => 'system-support',
             'order' => 20,
-            'permission' => fn ($user) => $user?->currentTeam !== null,
+            'permission' => fn ($user) => $user?->currentTeam
+                && PlaybookPermissions::canAccessModule($user, $user->currentTeam),
             'active' => fn () => \App\Support\NavigationActive::routeIs('playbook.*'),
         ]);
+    }
+
+    protected function registerPackageSeeder(): void
+    {
+        if (class_exists(PackageSeederRegistry::class)) {
+            PackageSeederRegistry::register(PlaybookPermissionsSeeder::class);
+        }
     }
 
     protected function registerAuditSkipRoutes(): void
