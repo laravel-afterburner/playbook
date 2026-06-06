@@ -1,6 +1,6 @@
 <?php
 
-namespace Afterburner\Playbook\Support;
+namespace App\Support;
 
 use App\Models\Team;
 use App\Models\User;
@@ -12,8 +12,8 @@ final class TeamPermissionGate
      */
     public static function allowsAny(User $user, int $teamId, array $permissions): bool
     {
-        if (class_exists(\App\Support\PermissionCatalog::class)) {
-            return \App\Support\PermissionCatalog::allowsAny($user, $teamId, $permissions);
+        if (class_exists(PermissionCatalog::class)) {
+            return PermissionCatalog::allowsAny($user, $teamId, $permissions);
         }
 
         if (self::ownsTeam($user, $teamId)) {

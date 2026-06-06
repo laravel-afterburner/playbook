@@ -3,7 +3,7 @@
 namespace Afterburner\Playbook\Livewire;
 
 use Afterburner\Playbook\Models\PlaybookFaq;
-use Afterburner\Playbook\Support\DispatchesBanner;
+use App\Traits\InteractsWithBanner;
 use Afterburner\Playbook\Support\PlaybookPermissions;
 use App\Models\User;
 use Illuminate\Support\Collection;
@@ -11,7 +11,7 @@ use Livewire\Component;
 
 class PlaybookFaqSection extends Component
 {
-    use DispatchesBanner;
+    use InteractsWithBanner;
 
     public bool $showFormModal = false;
 

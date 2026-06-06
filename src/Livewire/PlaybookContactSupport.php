@@ -3,14 +3,14 @@
 namespace Afterburner\Playbook\Livewire;
 
 use Afterburner\Playbook\Notifications\PlaybookSupportRequestNotification;
-use Afterburner\Playbook\Support\DispatchesBanner;
+use App\Traits\InteractsWithBanner;
 use Afterburner\Playbook\Support\SystemAdminRecipients;
 use Illuminate\Support\Facades\Notification;
 use Livewire\Component;
 
 class PlaybookContactSupport extends Component
 {
-    use DispatchesBanner;
+    use InteractsWithBanner;
 
     public bool $showModal = false;
 

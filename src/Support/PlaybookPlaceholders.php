@@ -2,7 +2,7 @@
 
 namespace Afterburner\Playbook\Support;
 
-use Afterburner\Support\EntityLabel;
+use App\Support\EntityLabel;
 
 class PlaybookPlaceholders
 {

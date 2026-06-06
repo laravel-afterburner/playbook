@@ -4,6 +4,7 @@ namespace Afterburner\Playbook\Support;
 
 use App\Models\Team;
 use App\Models\User;
+use App\Support\TeamPermissionGate;
 
 /**
  * Help & playbook module access (documentation vs FAQs).

@@ -1,6 +1,6 @@
 <?php
 
-namespace Afterburner\Playbook\Support;
+namespace App\Support;
 
 class PageHeader
 {

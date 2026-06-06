@@ -3,7 +3,7 @@
 namespace Afterburner\Playbook\Tests;
 
 use Afterburner\Playbook\Providers\PlaybookServiceProvider;
-use Afterburner\Support\Testing\Concerns\ConfiguresAfterburnerEntity;
+use Tests\Concerns\ConfiguresAfterburnerEntity;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\LivewireServiceProvider;
