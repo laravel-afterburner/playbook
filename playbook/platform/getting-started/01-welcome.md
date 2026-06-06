@@ -23,7 +23,7 @@ The sidebar lists every section you can access. Typical sections include:
 
 | Section | What it covers |
 |---------|----------------|
-| **Platform** | Sign-in, navigation, {{ entity_label_plural }}, roles, security, notifications |
+| **Platform** | Sign-in, navigation, {{ entity_label_plural }}, roles, security, notifications, FAQ |
 | **Documents** | File library, folders, uploads (when installed) |
 | **Events** | Meetings, calendar, notices, action items (when installed) |
 | **Communications** | Announcements and discussions (when installed) |
@@ -32,6 +32,10 @@ The sidebar lists every section you can access. Typical sections include:
 | **Dashboard**, **Directory**, **Compliance**, **Properties**, **Finances**, **Insurance**, **Maintenance**, **Administration** | Strata-specific areas (when configured for strata) |
 
 Sections appear only when the related package is installed and you have permission to use them.
+
+## FAQ
+
+Short answers to common questions live on the **FAQ** page (`/help/faq`) when your administrator has published entries. FAQ visibility is controlled separately from the main documentation — see [FAQ](/help/platform/faq).
 
 ## Search and contact support
 

@@ -39,7 +39,7 @@ Many strata applications organize the menu into sections:
 
 | Section | Typical items |
 |---------|----------------|
-| **{{ entity_label_title }} Compliance** | Plan, Bylaws, Land Use, Covenants |
+| **{{ entity_label_title }} Compliance** | Plan, Bylaws, Land Use, Registered Charges |
 | **{{ entity_label_title }} Business** | Financials, Insurance, Maintenance |
 | **System Support** | Subscriptions, Help & Support |
 
@@ -59,14 +59,18 @@ Open your profile menu (top right) to access:
 - **Security** — password, two-factor authentication, and passkeys
 - **Notifications** — in-app notification center
 
-## Help & Support
+## Help & Support and FAQ
 
-Open **Help & Support** from the **System Support** section of your {{ entity_label }} menu (or the default menu placement in other apps). Use **Search** to find topics across sections, or **Contact support** to reach system administrators.
+Open **Help & Support** from the **System Support** section of your {{ entity_label }} menu (or the default menu placement in other apps).
 
-Members need **View Playbook** permission (or equivalent) to open Help & Support when your application enforces it.
+- **Documentation** — browse sections in the sidebar; use **Search** or **Contact support** at the top of each page.
+- **FAQ** — when published questions exist and you have **View Playbook FAQs** permission, an **FAQ** link appears in the Help sidebar at `/help/faq`.
+
+Documentation and FAQ access are separate permissions. You may have FAQ access without full playbook access, or vice versa.
 
 ## Related guides
 
 - [{{ entity_label_title }} overview](/help/platform/entity-overview)
 - [Members and invitations](/help/platform/members-and-invitations)
+- [FAQ](/help/platform/faq)
 - [Notification center](/help/platform/notification-center)
