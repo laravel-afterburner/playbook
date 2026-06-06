@@ -2,20 +2,18 @@
 
 namespace Afterburner\Playbook\Support;
 
-use Illuminate\Support\Str;
+use Afterburner\Support\EntityLabel;
 
 class PlaybookPlaceholders
 {
     public static function replace(string $content): string
     {
-        $entityLabel = (string) config('afterburner.entity_label', 'entity');
-
         $replacements = [
             '/playbook/' => '/'.HelpSupportRoute::PREFIX.'/',
-            '{{ entity_label }}' => $entityLabel,
-            '{{ entity_label_title }}' => Str::title($entityLabel),
-            '{{ entity_label_plural }}' => Str::plural($entityLabel),
-            '{{ entity_label_plural_title }}' => Str::title(Str::plural($entityLabel)),
+            '{{ entity_label }}' => EntityLabel::singular(),
+            '{{ entity_label_title }}' => EntityLabel::singularTitle(),
+            '{{ entity_label_plural }}' => EntityLabel::plural(),
+            '{{ entity_label_plural_title }}' => EntityLabel::pluralTitle(),
             '{{ app_name }}' => (string) config('afterburner.app_name', config('app.name')),
         ];
 

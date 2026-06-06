@@ -3,6 +3,7 @@
 namespace Afterburner\Playbook\Tests;
 
 use Afterburner\Playbook\Providers\PlaybookServiceProvider;
+use Afterburner\Support\Testing\Concerns\ConfiguresAfterburnerEntity;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\LivewireServiceProvider;
@@ -10,6 +11,7 @@ use Orchestra\Testbench\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
 {
+    use ConfiguresAfterburnerEntity;
     use RefreshDatabase;
 
     protected function defineRoutes($router): void
@@ -23,9 +25,10 @@ abstract class TestCase extends BaseTestCase
 
         config([
             'afterburner-playbook.enabled' => true,
-            'afterburner.entity_label' => 'strata',
             'afterburner.app_name' => 'Test App',
         ]);
+
+        $this->configureAfterburnerEntity('strata', 'strata');
     }
 
     protected function getPackageProviders($app): array
@@ -38,6 +41,8 @@ abstract class TestCase extends BaseTestCase
 
     protected function defineEnvironment($app): void
     {
+        static::applyAfterburnerEntityConfig($app, 'strata', 'strata');
+
         $app['config']->set('app.key', 'base64:'.base64_encode(random_bytes(32)));
         $app['config']->set('database.default', 'testing');
         $app['config']->set('database.connections.testing', [
