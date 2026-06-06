@@ -104,7 +104,7 @@
                     type="button"
                     wire:click="submit"
                     wire:loading.attr="disabled"
-                    class="ms-3 inline-flex items-center rounded-md border border-transparent bg-gray-800 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-white transition hover:bg-gray-700 focus:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-50 dark:bg-gray-200 dark:text-gray-800 dark:hover:bg-white dark:focus:bg-white dark:focus:ring-offset-gray-800"
+                    class="ms-3 inline-flex items-center rounded-md border border-transparent bg-landing-lake px-4 py-2 text-xs font-semibold uppercase tracking-widest text-landing-mist transition hover:bg-landing-lake-deep focus:bg-landing-lake-deep focus:outline-none focus:ring-2 focus:ring-landing-spruce focus:ring-offset-2 disabled:opacity-50 dark:focus:ring-offset-gray-800"
                 >
                     Send message
                 </button>

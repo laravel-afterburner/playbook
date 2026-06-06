@@ -6,31 +6,44 @@ order: 20
 
 ## Members page
 
-Open **Members** from the {{ entity_label }} menu to view everyone in the current {{ entity_label }}. In strata applications with a resident directory, the same menu item may appear as **Directory** and include council contacts plus searchable resident listings.
+Open **Members** from your {{ entity_label }} menu to manage membership for the current {{ entity_label }}.
 
-Administrators can invite new members and manage existing ones from the members area.
+In strata applications, the menu label depends on your permissions:
 
-## Inviting a member
+| Menu label | What you see on the page |
+|------------|--------------------------|
+| **Members** | Member administration (invite, roles, remove) when you have **View Users** permission |
+| **Directory** | Resident directory only when you have **View Resident Directory** but not **View Users** |
 
-1. Open the Members page for your {{ entity_label }}
-2. Enter the invitee's email address
-3. Assign a role (if prompted)
-4. Send the invitation
+Council with both permissions sees **Members** in the menu and gets **both** sections on the same page — member administration above the **Resident Directory**. See [Resident directory](/help/directory/member-directory).
 
-The invitee receives an email and an in-app notification when they have an account.
+## Adding members
 
-## Removing a member
+Members with invite permission click **Add New Member** on the Members page, enter an email, select one or more roles, and send the invitation. Use **Manage Roles** in the invite dialog to open [Role management](/help/platform/managing-roles) when you need to adjust role definitions first.
 
-Administrators can remove members who no longer belong to the {{ entity_label }}. Removing a member revokes their access to that {{ entity_label }}'s data.
+Default roles are pre-selected and cannot be toggled off. Roles at maximum capacity are disabled.
+
+## Managing existing members
+
+On each member row:
+
+- Click a **role badge** to view that member's effective permissions.
+- Use the **manage roles** action to change assigned roles.
+- Remove members who no longer belong to the {{ entity_label }} (when permitted).
+
+## Invitations
+
+Invitees receive an email and an in-app notification when they have an account. They accept or decline from the notification center or invitation link.
 
 ## Roles on invitation
 
-Assign the appropriate role when inviting someone. Roles control which features and actions are available. See [Understanding roles](/help/platform/understanding-roles) and [Managing roles](/help/platform/managing-roles).
+Assign the appropriate role when inviting someone. Roles control which features and actions are available. See [Understanding roles](/help/platform/understanding-roles).
 
 ## Leaving a {{ entity_label }}
 
-Members can leave a {{ entity_label }} from the Members page unless they are the owner. Owners must transfer ownership or delete the {{ entity_label }} before leaving.
+Members can leave from the Members page unless they are the owner. Owners must transfer ownership or delete the {{ entity_label }} before leaving.
 
 ## Related guides
 
-- [Resident directory](/help/directory/member-directory) — strata apps
+- [Managing roles](/help/platform/managing-roles)
+- [Resident directory](/help/directory/member-directory)

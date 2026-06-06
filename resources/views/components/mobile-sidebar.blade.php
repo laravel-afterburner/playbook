@@ -6,7 +6,7 @@
 @endphp
 
 <div class="mb-6 lg:hidden">
-    <label for="playbook-mobile-nav" class="block text-xs font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400">
+    <label for="playbook-mobile-nav" class="block text-xs font-medium uppercase tracking-wide text-gray-600 dark:text-gray-400">
         Browse {{ $helpSupportName }}
     </label>
     <select

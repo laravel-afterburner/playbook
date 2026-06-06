@@ -30,8 +30,10 @@ Open the {{ entity_label }} switcher in the navigation bar to manage your active
 | Item | Purpose |
 |------|---------|
 | **Details** | Name, timezone, and core {{ entity_label }} information |
-| **Members** or **Directory** | Member list and resident directory (label depends on your app) |
+| **Members** or **Directory** | See below — same page in strata apps, different label |
 | **System Settings** | Package configuration for administrators |
+
+**Members vs Directory (strata):** The menu shows **Members** when you can administer users (**View Users**). It shows **Directory** when you only have resident-directory access. Both links open the same page; council with both permissions sees member tools and the resident directory together.
 
 ### Grouped items (strata and similar apps)
 
@@ -58,6 +60,8 @@ Open your profile menu (top right) to access:
 - **Profile** — name, email, timezone, and account details
 - **Security** — password, two-factor authentication, and passkeys
 - **Notifications** — in-app notification center
+
+System administrators also see **Impersonate User**, **Impersonate Role**, and system administration links.
 
 ## Help & Support and FAQ
 

@@ -10,10 +10,10 @@ The **Roles** page lets administrators review default roles, create custom roles
 
 ## Opening the Roles page
 
-1. Open your {{ entity_label }} menu.
-2. Select **Roles** (requires permission to view or manage users for the current {{ entity_label }}).
+1. Open the **Members** page for your {{ entity_label }}.
+2. Click **Manage Roles** when inviting a member, or navigate directly to the roles route if your application exposes one.
 
-{{ entity_label }} owners always have full access.
+You need permission to **create roles** for the current {{ entity_label }} (typically included with user-management access). {{ entity_label }} owners always have full access.
 
 ## What you can do
 
@@ -24,6 +24,8 @@ The **Roles** page lets administrators review default roles, create custom roles
 - Set **maximum members** on custom roles to limit how many people can hold the role.
 - Enable **Directory: Council** on a role so those members appear in the council section of the [resident directory](/help/directory/member-directory).
 - Choose a **badge colour** for how the role displays in member lists.
+
+When adding members, click a role name in the invite dialog to preview its permissions before sending.
 
 ## Permission groups
 
@@ -46,7 +48,7 @@ FAQ and documentation permissions are independent — assign each according to w
 
 ## Assigning roles to members
 
-Role assignment happens on the **Members** (or **Directory**) page, not on the Roles page itself. Open a member's record and change their assigned role. Changes take effect immediately.
+Role assignment happens on the **Members** page — use **Manage roles** on a member row or select roles when sending an invitation. Changes take effect immediately.
 
 ## Related guides
 
