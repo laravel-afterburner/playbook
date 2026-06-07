@@ -1,4 +1,4 @@
-<x-app-layout :title="\Afterburner\Playbook\Support\PageHeader::make($helpSupportName, detail: $page->displayTitle())">
+<x-app-layout :title="\App\Support\PageHeader::make($helpSupportName, detail: $page->displayTitle())">
     <x-slot name="header">
         <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <x-afterburner-playbook::page-header :section="$helpSupportName" :detail="$page->displayTitle()" />
