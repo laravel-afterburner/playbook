@@ -76,7 +76,7 @@ class PlaybookRenderer
                 continue;
             }
 
-            $replacement = '<h'.$heading['level'].' id="'.$heading['id'].'"><a href="#'.$heading['id'].'" class="playbook-heading-anchor">'.$heading['text'].'</a></h'.$heading['level'].'>';
+            $replacement = '<h'.$heading['level'].' id="'.$heading['id'].'"><a href="#'.$heading['id'].'" class="playbook-heading-anchor text-inherit no-underline hover:text-indigo-600 dark:hover:text-indigo-400">'.$heading['text'].'</a></h'.$heading['level'].'>';
             $html = preg_replace($pattern, $replacement, $html, 1) ?? $html;
         }
 

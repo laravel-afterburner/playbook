@@ -247,7 +247,7 @@
                     type="button"
                     wire:click="saveFaq"
                     wire:loading.attr="disabled"
-                    class="ms-3 inline-flex items-center rounded-md border border-transparent bg-landing-lake px-4 py-2 text-xs font-semibold uppercase tracking-widest text-landing-mist transition hover:bg-landing-lake-deep focus:bg-landing-lake-deep focus:outline-none focus:ring-2 focus:ring-landing-spruce focus:ring-offset-2 disabled:opacity-50 dark:focus:ring-offset-gray-800"
+                    class="ms-3 inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-white transition hover:bg-indigo-800 focus:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-50 dark:bg-indigo-500 dark:hover:bg-indigo-400 dark:focus:bg-indigo-400 dark:focus:ring-offset-gray-800"
                 >
                     {{ $editingFaqId ? 'Save changes' : 'Create FAQ' }}
                 </button>

@@ -31,7 +31,7 @@
                 ])
 
                 <header class="mb-8 border-b border-gray-200 pb-6 dark:border-gray-700">
-                    <p class="text-sm font-medium text-landing-lake dark:text-indigo-400">{{ $helpSupportName }}</p>
+                    <p class="text-sm font-medium text-indigo-600 dark:text-indigo-400">{{ $helpSupportName }}</p>
                     <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100">Frequently asked questions</h1>
                 </header>
 

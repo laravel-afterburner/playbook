@@ -31,11 +31,11 @@
                 ])
 
                 <header class="mb-8 border-b border-gray-200 pb-6 dark:border-gray-700">
-                    <p class="text-sm font-medium text-landing-lake dark:text-indigo-400">{{ $section->label }}</p>
+                    <p class="text-sm font-medium text-indigo-600 dark:text-indigo-400">{{ $section->label }}</p>
                     <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100">{{ $page->displayTitle() }}</h1>
                 </header>
 
-                <div class="playbook-prose prose prose-slate max-w-none dark:prose-invert prose-headings:scroll-mt-24 prose-a:text-landing-lake hover:prose-a:text-landing-lake-deep dark:prose-a:text-indigo-400 dark:hover:prose-a:text-indigo-300 prose-code:before:content-none prose-code:after:content-none prose-code:text-landing-spruce dark:prose-code:text-indigo-300 prose-code:bg-gray-100 dark:prose-code:bg-gray-900 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded">
+                <div class="playbook-prose prose prose-slate max-w-none dark:prose-invert prose-headings:scroll-mt-24 prose-a:text-indigo-600 hover:prose-a:text-indigo-800 dark:prose-a:text-indigo-400 dark:hover:prose-a:text-indigo-300 prose-code:before:content-none prose-code:after:content-none prose-code:text-indigo-700 dark:prose-code:text-indigo-300 prose-code:bg-gray-100 dark:prose-code:bg-gray-900 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded">
                     {!! $content !!}
                 </div>
             </article>
